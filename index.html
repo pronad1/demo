@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Birthday Adventure 🎁</title>
+<title>Prsty's Birthday Adventure 🎁</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Quicksand:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
 <style>
@@ -43,6 +43,24 @@ h1,h2,h3{font-family:'Fraunces', serif;}
 
 /* ---------------- confetti canvas ---------------- */
 #confetti-canvas{position:fixed; inset:0; pointer-events:none; z-index:80;}
+
+/* ---------------- 3d ambient background ---------------- */
+#bg3d{position:fixed; inset:0; z-index:0; pointer-events:none;}
+#bg3d canvas{display:block; width:100% !important; height:100% !important;}
+
+/* ---------------- sky shower (chocolates & gifts) ---------------- */
+.sky-drop{
+  position:fixed; top:-60px; z-index:90; pointer-events:none; line-height:1;
+  will-change:transform, opacity;
+  animation-name:skyfall; animation-timing-function:cubic-bezier(.45,.05,.55,.95); animation-fill-mode:forwards;
+  filter:drop-shadow(0 6px 10px rgba(90,21,48,0.25));
+}
+@keyframes skyfall{
+  0%{ transform:translate(0,0) rotate(0deg); opacity:0; }
+  10%{ opacity:1; }
+  50%{ transform:translate(var(--driftX,20px), 58vh) rotate(190deg); }
+  100%{ transform:translate(calc(var(--driftX,20px) * -1), 118vh) rotate(370deg); opacity:0.9; }
+}
 
 /* ---------------- header ---------------- */
 .top{
@@ -260,6 +278,7 @@ footer{text-align:center; padding:40px 20px 10px; color:var(--maroon); font-fami
 <body>
 
 <div id="sparkles"></div>
+<div id="bg3d"></div>
 <canvas id="confetti-canvas"></canvas>
 
 <header class="top">
@@ -449,6 +468,7 @@ footer{text-align:center; padding:40px 20px 10px; color:var(--maroon); font-fami
 
 <footer>made with a lot of ♥ for you</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* -------- birthday countdown (August 31) -------- */
 (function(){
@@ -477,6 +497,146 @@ for(let i=0;i<28;i++){
   s.style.animationDuration = (2.5+Math.random()*3)+'s';
   sparkleBox.appendChild(s);
 }
+
+/* -------- 3d ambient background -------- */
+(function initBG3D(){
+  try{
+    const mount = document.getElementById('bg3d');
+    if(!mount || typeof THREE === 'undefined') return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileView = window.innerWidth < 640;
+    const particleCount = mobileView ? 90 : 220;
+    const gemCount = mobileView ? 5 : 9;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0xfdf6ea, 0.011);
+
+    const camera = new THREE.PerspectiveCamera(48, window.innerWidth/window.innerHeight, 0.1, 500);
+    camera.position.set(0, 0, 62);
+
+    const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    mount.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xfff1d6, 0.7));
+    const goldLight = new THREE.PointLight(0xd4a24e, 1.5, 320);
+    goldLight.position.set(45, 35, 55);
+    scene.add(goldLight);
+    const maroonLight = new THREE.PointLight(0x7a1f3d, 1.1, 320);
+    maroonLight.position.set(-45, -25, 45);
+    scene.add(maroonLight);
+
+    function makeGlowTexture(){
+      const size = 128;
+      const cnv = document.createElement('canvas');
+      cnv.width = cnv.height = size;
+      const c2d = cnv.getContext('2d');
+      const g = c2d.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);
+      g.addColorStop(0,'rgba(255,242,176,1)');
+      g.addColorStop(0.4,'rgba(212,162,78,0.65)');
+      g.addColorStop(1,'rgba(212,162,78,0)');
+      c2d.fillStyle = g;
+      c2d.fillRect(0,0,size,size);
+      return new THREE.CanvasTexture(cnv);
+    }
+    const glowTex = makeGlowTexture();
+
+    const particles = [];
+    const particleGroup = new THREE.Group();
+    for(let i=0;i<particleCount;i++){
+      const mat = new THREE.SpriteMaterial({
+        map:glowTex,
+        color: Math.random()>0.5 ? 0xd4a24e : 0xffe29a,
+        transparent:true,
+        opacity:0.3+Math.random()*0.4,
+        blending:THREE.AdditiveBlending,
+        depthWrite:false
+      });
+      const spr = new THREE.Sprite(mat);
+      const scl = 0.6+Math.random()*1.7;
+      spr.scale.set(scl,scl,1);
+      spr.position.set((Math.random()-0.5)*150, (Math.random()-0.5)*110, (Math.random()-0.5)*90);
+      spr.userData.speed = 0.015+Math.random()*0.05;
+      spr.userData.sway = Math.random()*Math.PI*2;
+      particleGroup.add(spr);
+      particles.push(spr);
+    }
+    scene.add(particleGroup);
+
+    const gemGeos = [
+      new THREE.IcosahedronGeometry(4.2,0),
+      new THREE.OctahedronGeometry(4.6,0),
+      new THREE.TorusGeometry(3.4,1.05,10,24)
+    ];
+    const gems = [];
+    const gemGroup = new THREE.Group();
+    for(let i=0;i<gemCount;i++){
+      const geo = gemGeos[i % gemGeos.length];
+      const metallic = i % 2 === 0;
+      const mat = metallic
+        ? new THREE.MeshStandardMaterial({ color: i%4===0 ? 0xd4a24e : 0x7a1f3d, metalness:0.75, roughness:0.3, emissive:0x2a1005, emissiveIntensity:0.18 })
+        : new THREE.MeshBasicMaterial({ color:0xd4a24e, wireframe:true, transparent:true, opacity:0.32 });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set((Math.random()-0.5)*120, (Math.random()-0.5)*75, -30-Math.random()*70);
+      mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
+      mesh.userData.rotSpeed = (0.05+Math.random()*0.12) * (Math.random()>0.5?1:-1);
+      mesh.userData.floatOff = Math.random()*Math.PI*2;
+      gemGroup.add(mesh);
+      gems.push(mesh);
+    }
+    scene.add(gemGroup);
+
+    let mouseX=0, mouseY=0, curRotX=0, curRotY=0;
+    window.addEventListener('mousemove', (e)=>{
+      mouseX = (e.clientX/window.innerWidth)-0.5;
+      mouseY = (e.clientY/window.innerHeight)-0.5;
+    }, { passive:true });
+
+    window.addEventListener('resize', ()=>{
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    const clock = new THREE.Clock();
+    function renderFrame(){
+      const t = clock.getElapsedTime();
+
+      particles.forEach(p=>{
+        p.position.y += p.userData.speed;
+        p.position.x += Math.sin(t*0.6+p.userData.sway)*0.012;
+        if(p.position.y > 58){ p.position.y = -58; }
+      });
+
+      gems.forEach(g=>{
+        g.rotation.x += g.userData.rotSpeed*0.01;
+        g.rotation.y += g.userData.rotSpeed*0.015;
+        g.position.y += Math.sin(t*0.5+g.userData.floatOff)*0.02;
+      });
+
+      curRotX += (mouseY*0.22 - curRotX)*0.04;
+      curRotY += (mouseX*0.32 - curRotY)*0.04;
+      scene.rotation.x = curRotX*0.15;
+      scene.rotation.y = curRotY*0.15;
+
+      const scrollT = (window.scrollY||0)*0.01;
+      camera.position.y = -scrollT*4;
+      gemGroup.rotation.z = scrollT*0.02;
+
+      renderer.render(scene, camera);
+    }
+
+    if(reduceMotion){
+      renderFrame();
+    } else {
+      (function loop(){ requestAnimationFrame(loop); renderFrame(); })();
+    }
+  } catch(err){
+    console.warn('3D background skipped:', err);
+  }
+})();
 
 /* -------- state -------- */
 const totalLevels = 4;
@@ -538,6 +698,7 @@ document.querySelectorAll('.continue-btn').forEach(btn=>{
       finale.classList.add('shown');
       setTimeout(()=>{ finale.scrollIntoView({behavior:'smooth', block:'start'}); }, 150);
       launchConfetti();
+      rainGifts(1);
     } else {
       currentLevel = parseInt(next);
       updateProgress();
@@ -575,6 +736,7 @@ candleBtn.addEventListener('click', ()=>{
   wishLine.textContent = 'Wish sent to the universe ✨';
   finalMsg.classList.add('show');
   launchConfetti();
+  rainGifts(0.45);
 });
 
 /* -------- confetti -------- */
@@ -619,6 +781,28 @@ function launchConfetti(){
     if(alive && frame<200){ requestAnimationFrame(tick); } else { ctx.clearRect(0,0,canvas.width,canvas.height); }
   }
   tick();
+}
+
+/* -------- sky shower: chocolates & valuable gifts drop from above -------- */
+function rainGifts(intensity){
+  intensity = intensity || 1;
+  const items = ['🍫','🎁','💎','🪙','💍','🍬'];
+  const base = isMobile ? 26 : 46;
+  const count = Math.round(base * intensity);
+  const spacing = isMobile ? 75 : 55;
+  for(let i=0;i<count;i++){
+    setTimeout(()=>{
+      const drop = document.createElement('div');
+      drop.className = 'sky-drop';
+      drop.textContent = items[Math.floor(Math.random()*items.length)];
+      drop.style.left = (Math.random()*100)+'vw';
+      drop.style.fontSize = (20+Math.random()*20)+'px';
+      drop.style.setProperty('--driftX', (Math.random()*160-80)+'px');
+      drop.style.animationDuration = (3.2+Math.random()*2.6)+'s';
+      document.body.appendChild(drop);
+      drop.addEventListener('animationend', ()=> drop.remove());
+    }, i*spacing);
+  }
 }
 
 /* small sparkle burst on gift open */
