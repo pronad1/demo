@@ -691,9 +691,19 @@
       opacity: 0.8;
       animation: hintBlink 1.6s ease-in-out infinite;
     }
+
     @keyframes hintBlink {
-      0%,100% { opacity: 0.6; transform: translateY(0); }
-      50%      { opacity: 1;   transform: translateY(-3px); }
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: translateY(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
     }
 
     /* ---- candle on top ---- */
@@ -723,11 +733,21 @@
       opacity: 0;
       animation: pulseRing 1.8s ease-out infinite;
     }
-    .candle-btn.blown::after { display: none; }
+
+    .candle-btn.blown::after {
+      display: none;
+    }
 
     @keyframes pulseRing {
-      0%   { transform: translateX(-50%) scale(0.6); opacity: 0.9; }
-      100% { transform: translateX(-50%) scale(1.9); opacity: 0; }
+      0% {
+        transform: translateX(-50%) scale(0.6);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: translateX(-50%) scale(1.9);
+        opacity: 0;
+      }
     }
 
     /* ---- flame ---- */
@@ -736,12 +756,13 @@
       height: 26px;
       border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
       background: radial-gradient(ellipse at 50% 75%, #fff7c0 0%, #ffd740 40%, #ff8c00 75%, #e2622a 100%);
-      box-shadow: 0 0 8px 3px rgba(255,140,0,0.55), 0 0 18px 5px rgba(255,80,0,0.25);
+      box-shadow: 0 0 8px 3px rgba(255, 140, 0, 0.55), 0 0 18px 5px rgba(255, 80, 0, 0.25);
       margin-bottom: 3px;
       animation: flicker 1.4s ease-in-out infinite;
       transform-origin: bottom center;
       position: relative;
     }
+
     /* inner bright core */
     .flame::before {
       content: '';
@@ -752,13 +773,26 @@
       width: 5px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255,255,220,0.85);
+      background: rgba(255, 255, 220, 0.85);
     }
 
     @keyframes flicker {
-      0%,100% { transform: scale(1)    rotate(-2deg); filter: brightness(1); }
-      30%      { transform: scale(1,1.1) rotate(1deg);  filter: brightness(1.1); }
-      60%      { transform: scale(0.96,1.14) rotate(-1deg); filter: brightness(0.95); }
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-2deg);
+        filter: brightness(1);
+      }
+
+      30% {
+        transform: scale(1, 1.1) rotate(1deg);
+        filter: brightness(1.1);
+      }
+
+      60% {
+        transform: scale(0.96, 1.14) rotate(-1deg);
+        filter: brightness(0.95);
+      }
     }
 
     .flame.out {
@@ -773,7 +807,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(180,160,140,0.6);
+      background: rgba(180, 160, 140, 0.6);
       position: absolute;
       bottom: 28px;
       left: 50%;
@@ -781,12 +815,21 @@
       opacity: 0;
       pointer-events: none;
     }
+
     .smoke.puff {
       animation: smokePuff 1.2s ease-out forwards;
     }
+
     @keyframes smokePuff {
-      0%   { opacity: 0.7; transform: translateX(-50%) scale(1) translateY(0); }
-      100% { opacity: 0;   transform: translateX(calc(-50% + 8px)) scale(2.5) translateY(-28px); }
+      0% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1) translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(calc(-50% + 8px)) scale(2.5) translateY(-28px);
+      }
     }
 
     /* ---- candle stick ---- */
@@ -796,8 +839,9 @@
       background: linear-gradient(90deg, #fff0a0, #ffd740 50%, #ffc300);
       border-radius: 3px 3px 2px 2px;
       position: relative;
-      box-shadow: inset -2px 0 4px rgba(0,0,0,0.1);
+      box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.1);
     }
+
     /* melted wax drip */
     .candle-stick::before {
       content: '';
@@ -806,9 +850,10 @@
       left: 2px;
       width: 6px;
       height: 10px;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 0 0 50% 50%;
     }
+
     .candle-stick::after {
       content: '';
       position: absolute;
@@ -816,13 +861,23 @@
       right: 1px;
       width: 4px;
       height: 14px;
-      background: rgba(255,220,80,0.7);
+      background: rgba(255, 220, 80, 0.7);
       border-radius: 0 0 50% 50%;
       animation: waxDrip 3s ease-in-out infinite;
     }
+
     @keyframes waxDrip {
-      0%,100% { height: 12px; opacity: 0.7; }
-      50%      { height: 18px; opacity: 1; }
+
+      0%,
+      100% {
+        height: 12px;
+        opacity: 0.7;
+      }
+
+      50% {
+        height: 18px;
+        opacity: 1;
+      }
     }
 
     /* ---- cake layers ---- */
@@ -841,19 +896,22 @@
       border-radius: 6px 6px 0 0;
       position: relative;
       overflow: visible;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
     /* frosting top drip */
     .cake-top::before {
       content: '';
       position: absolute;
       top: -7px;
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       height: 12px;
       background: #fff;
       border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-      box-shadow: inset 0 -4px 6px rgba(255,180,200,0.4);
+      box-shadow: inset 0 -4px 6px rgba(255, 180, 200, 0.4);
     }
+
     /* frosting drip drops */
     .cake-top::after {
       content: '';
@@ -875,29 +933,30 @@
       height: 38px;
       background: linear-gradient(180deg, #fde68a 0%, #f9a825 100%);
       position: relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
     /* stripe decoration */
     .cake-mid::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent 0px,
-        transparent 14px,
-        rgba(255,255,255,0.18) 14px,
-        rgba(255,255,255,0.18) 18px
-      );
+      background: repeating-linear-gradient(90deg,
+          transparent 0px,
+          transparent 14px,
+          rgba(255, 255, 255, 0.18) 14px,
+          rgba(255, 255, 255, 0.18) 18px);
     }
+
     /* mid frosting drip */
     .cake-mid::after {
       content: '';
       position: absolute;
       top: -7px;
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       height: 10px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 0 0 50% 50% / 0 0 100% 100%;
       clip-path: ellipse(55px 10px at 50% 0%);
     }
@@ -909,29 +968,32 @@
       background: linear-gradient(180deg, #c8a2d8 0%, #9c67b8 100%);
       border-radius: 0 0 10px 10px;
       position: relative;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
+
     /* dots pattern */
     .cake-base::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 0 0 10px 10px;
-      background: radial-gradient(circle 3px at 12px 22px, rgba(255,255,255,0.35) 70%, transparent 71%),
-                  radial-gradient(circle 3px at 32px 12px, rgba(255,255,255,0.35) 70%, transparent 71%),
-                  radial-gradient(circle 3px at 52px 28px, rgba(255,255,255,0.35) 70%, transparent 71%),
-                  radial-gradient(circle 3px at 72px 16px, rgba(255,255,255,0.35) 70%, transparent 71%),
-                  radial-gradient(circle 3px at 92px 24px, rgba(255,255,255,0.35) 70%, transparent 71%),
-                  radial-gradient(circle 3px at 112px 12px, rgba(255,255,255,0.35) 70%, transparent 71%);
+      background: radial-gradient(circle 3px at 12px 22px, rgba(255, 255, 255, 0.35) 70%, transparent 71%),
+        radial-gradient(circle 3px at 32px 12px, rgba(255, 255, 255, 0.35) 70%, transparent 71%),
+        radial-gradient(circle 3px at 52px 28px, rgba(255, 255, 255, 0.35) 70%, transparent 71%),
+        radial-gradient(circle 3px at 72px 16px, rgba(255, 255, 255, 0.35) 70%, transparent 71%),
+        radial-gradient(circle 3px at 92px 24px, rgba(255, 255, 255, 0.35) 70%, transparent 71%),
+        radial-gradient(circle 3px at 112px 12px, rgba(255, 255, 255, 0.35) 70%, transparent 71%);
     }
+
     /* base frosting drip */
     .cake-base::after {
       content: '';
       position: absolute;
       top: -6px;
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       height: 9px;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255, 255, 255, 0.88);
       clip-path: ellipse(65px 9px at 50% 0%);
     }
 
@@ -941,7 +1003,7 @@
       height: 10px;
       background: linear-gradient(180deg, #e8e0d0, #d4c8b0);
       border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
       margin-top: 1px;
     }
 
@@ -951,9 +1013,19 @@
       font-size: 11px;
       animation: starTwinkle 2s ease-in-out infinite;
     }
+
     @keyframes starTwinkle {
-      0%,100% { opacity: 0.6; transform: scale(0.9); }
-      50%      { opacity: 1;   transform: scale(1.2); }
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: scale(0.9);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
     }
 
     /* ---- happy birthday text on cake ---- */
@@ -964,7 +1036,7 @@
       text-align: center;
       font-family: 'Fraunces', serif;
       font-size: 8px;
-      color: rgba(80,30,50,0.75);
+      color: rgba(80, 30, 50, 0.75);
       letter-spacing: 0.5px;
       pointer-events: none;
     }
@@ -1029,7 +1101,8 @@
     .bday-text-wrap {
       position: absolute;
       bottom: 14%;
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       z-index: 10;
       text-align: center;
       pointer-events: none;
@@ -1038,7 +1111,7 @@
     .bday-hey {
       font-family: 'Quicksand', sans-serif;
       font-size: clamp(14px, 2.5vw, 20px);
-      color: rgba(255,160,200,0.85);
+      color: rgba(255, 160, 200, 0.85);
       opacity: 0;
       letter-spacing: 0.08em;
       margin-bottom: 6px;
@@ -1068,7 +1141,7 @@
     .bday-sub {
       font-family: 'Quicksand', sans-serif;
       font-size: clamp(12px, 2vw, 16px);
-      color: rgba(255,180,210,0.7);
+      color: rgba(255, 180, 210, 0.7);
       opacity: 0;
       letter-spacing: 0.05em;
     }
@@ -1082,7 +1155,7 @@
       bottom: 24px;
       right: 24px;
       z-index: 20;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(8px);
       border: 1.5px solid #ff2d78;
       color: #ff2d78;
@@ -1107,13 +1180,27 @@
     }
 
     @keyframes neonFadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes neonPulse {
-      0%, 100% { text-shadow: 0 0 8px #ff2d78, 0 0 22px #ff2d78, 0 0 55px #ff006a; }
-      50%       { text-shadow: 0 0 16px #ff2d78, 0 0 40px #ff2d78, 0 0 90px #ff006a; }
+
+      0%,
+      100% {
+        text-shadow: 0 0 8px #ff2d78, 0 0 22px #ff2d78, 0 0 55px #ff006a;
+      }
+
+      50% {
+        text-shadow: 0 0 16px #ff2d78, 0 0 40px #ff2d78, 0 0 90px #ff006a;
+      }
     }
   </style>
 </head>
@@ -1137,7 +1224,7 @@
   <canvas id="confetti-canvas"></canvas>
 
   <header class="top">
-    <div class="portrait"><img src="images/present_2.jpg" alt="birthday girl"></div>
+    <div class="portrait"><img src="images/present_2.jpeg" alt="birthday girl"></div>
     <span class="eyebrow">A Present For You</span>
     <div class="bday-badge">🎂 Birthday: August 31st</div>
     <h1>Your Birthday <span>Adventure</span></h1>
@@ -1310,8 +1397,7 @@
       <div class="mosaic">
         <img src="images/past_1.jpg" alt="">
         <img src="images/past_2.jpg" alt="">
-        <img src="images/present.jpg" alt="">
-        <img src="images/present_2.jpg" alt="">
+        <img src="images/present_2.jpeg" alt="">
       </div>
 
       <div class="cake-wrap">
@@ -1727,34 +1813,34 @@
        NEON PARTICLE HEART INTRO
     ====================================================== */
     (function neonHeartIntro() {
-      const intro  = document.getElementById('bday-intro');
+      const intro = document.getElementById('bday-intro');
       const canvas = document.getElementById('bday-canvas');
-      const ctx    = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
 
       /* ---- resize ---- */
       function resize() {
-        canvas.width  = window.innerWidth;
+        canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
       resize();
       window.addEventListener('resize', resize);
 
       /* ---- neon colours ---- */
-      const C_CORE   = '#ff2d78';
-      const C_GLOW   = 'rgba(255,45,120,';
-      const C_WHITE  = 'rgba(255,255,255,';
+      const C_CORE = '#ff2d78';
+      const C_GLOW = 'rgba(255,45,120,';
+      const C_WHITE = 'rgba(255,255,255,';
       // scatter particle palette: pinks + a few cyans for sparkle
       const SCATTER_COLS = [
-        'rgba(255,45,120,',   'rgba(255,100,160,', 'rgba(255,180,210,',
-        'rgba(255,60,130,',   'rgba(200,20,90,',
-        'rgba(255,220,240,',  'rgba(0,240,255,',   // cyan accent
+        'rgba(255,45,120,', 'rgba(255,100,160,', 'rgba(255,180,210,',
+        'rgba(255,60,130,', 'rgba(200,20,90,',
+        'rgba(255,220,240,', 'rgba(0,240,255,',   // cyan accent
       ];
 
       /* ---- heart parametric (t in [0, 2π]) ---- */
       // Start from the left dip (t≈0 gives top-centre; offset by π gives left dip)
       function heartXY(t, cx, cy, R) {
         const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+        const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
         return { x: cx + x * R, y: cy + y * R };
       }
 
@@ -1764,8 +1850,8 @@
         const n = burst ? 18 : 4;
         for (let i = 0; i < n; i++) {
           const angle = Math.random() * Math.PI * 2;
-          const spd   = Math.random() * (burst ? 4 : 2.2) + 0.4;
-          const col   = SCATTER_COLS[Math.floor(Math.random() * SCATTER_COLS.length)];
+          const spd = Math.random() * (burst ? 4 : 2.2) + 0.4;
+          const col = SCATTER_COLS[Math.floor(Math.random() * SCATTER_COLS.length)];
           scatter.push({
             x, y,
             vx: Math.cos(angle) * spd,
@@ -1789,17 +1875,17 @@
       let step = 0;
       let startTime = null;
       let done = false;
-      const DRAW_DUR  = 3.4;   // seconds to trace full heart
-      const HOLD_DUR  = 1.8;   // seconds to hold + show text before dismiss
-      let heartDone   = false;
+      const DRAW_DUR = 3.4;   // seconds to trace full heart
+      const HOLD_DUR = 1.8;   // seconds to hold + show text before dismiss
+      let heartDone = false;
       let heartDoneAt = 0;
 
       /* cached heart params */
       function heartParams() {
         return {
-          cx: canvas.width  * 0.5,
+          cx: canvas.width * 0.5,
           cy: canvas.height * 0.45,
-          R:  Math.min(canvas.width, canvas.height) * 0.021
+          R: Math.min(canvas.width, canvas.height) * 0.021
         };
       }
 
@@ -1807,7 +1893,7 @@
       function glowDot(x, y, radius, alpha, blur, colRgba) {
         ctx.save();
         ctx.shadowColor = C_CORE;
-        ctx.shadowBlur  = blur;
+        ctx.shadowBlur = blur;
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fillStyle = colRgba + alpha + ')';
@@ -1820,14 +1906,14 @@
         const { cx, cy, R } = heartParams();
         ctx.save();
         ctx.shadowColor = C_CORE;
-        ctx.shadowBlur  = blur;
+        ctx.shadowBlur = blur;
         ctx.strokeStyle = C_GLOW + alpha + ')';
-        ctx.lineWidth   = lw;
-        ctx.lineCap     = 'round';
-        ctx.lineJoin    = 'round';
+        ctx.lineWidth = lw;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
         ctx.beginPath();
         for (let i = 0; i <= STEPS; i++) {
-          const t  = T_OFFSET + (i / STEPS) * Math.PI * 2;
+          const t = T_OFFSET + (i / STEPS) * Math.PI * 2;
           const pt = heartXY(t, cx, cy, R);
           i === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y);
         }
@@ -1850,8 +1936,8 @@
         /* ---- scatter particle update ---- */
         for (let i = scatter.length - 1; i >= 0; i--) {
           const p = scatter[i];
-          p.x  += p.vx;
-          p.y  += p.vy;
+          p.x += p.vx;
+          p.y += p.vy;
           p.vy += 0.04;   // gentle gravity
           p.life -= p.decay;
           if (p.life <= 0) { scatter.splice(i, 1); continue; }
@@ -1860,9 +1946,9 @@
 
         if (!heartDone) {
           /* progress 0→1 over DRAW_DUR seconds */
-          const prog  = Math.min(elapsed / DRAW_DUR, 1);
-          const tNow  = T_OFFSET + prog * Math.PI * 2;
-          const head  = heartXY(tNow, cx, cy, R);
+          const prog = Math.min(elapsed / DRAW_DUR, 1);
+          const tNow = T_OFFSET + prog * Math.PI * 2;
+          const head = heartXY(tNow, cx, cy, R);
 
           /* store trail */
           trail.push({ x: head.x, y: head.y, a: 1 });
@@ -1871,7 +1957,7 @@
           /* draw trail */
           for (let i = 0; i < trail.length; i++) {
             const frac = i / trail.length;
-            const tp   = trail[i];
+            const tp = trail[i];
             glowDot(tp.x, tp.y, 1.5 + frac * 2, frac * 0.65, 10 + frac * 20, C_GLOW);
           }
 
@@ -1881,7 +1967,7 @@
           /* comet head: bright white core with pink glow */
           ctx.save();
           ctx.shadowColor = '#ffffff';
-          ctx.shadowBlur  = 30;
+          ctx.shadowBlur = 30;
           ctx.beginPath();
           ctx.arc(head.x, head.y, 4.5, 0, Math.PI * 2);
           ctx.fillStyle = '#ffffff';
@@ -1891,7 +1977,7 @@
           // second smaller glow ring
           ctx.save();
           ctx.shadowColor = C_CORE;
-          ctx.shadowBlur  = 50;
+          ctx.shadowBlur = 50;
           ctx.beginPath();
           ctx.arc(head.x, head.y, 2, 0, Math.PI * 2);
           ctx.fillStyle = C_CORE;
@@ -1899,14 +1985,14 @@
           ctx.restore();
 
           if (prog >= 1) {
-            heartDone   = true;
+            heartDone = true;
             heartDoneAt = elapsed;
             /* big burst when heart closes */
             for (let b = 0; b < 8; b++) emitScatter(head.x, head.y, true);
           }
         } else {
           /* heart complete — draw glowing outline */
-          const age    = elapsed - heartDoneAt;
+          const age = elapsed - heartDoneAt;
           const oAlpha = Math.min(1, age * 1.6);
           // outer glow
           drawHeartOutline(oAlpha * 0.4, 60, 3);
@@ -1919,12 +2005,12 @@
 
           /* fade-in text labels after 0.5s */
           if (age > 0.5) {
-            const hey   = document.getElementById('bday-hey');
+            const hey = document.getElementById('bday-hey');
             const title = document.getElementById('bday-title');
-            const sub   = document.getElementById('bday-sub');
-            if (hey   && !hey.classList.contains('neon-in'))   hey.classList.add('neon-in');
+            const sub = document.getElementById('bday-sub');
+            if (hey && !hey.classList.contains('neon-in')) hey.classList.add('neon-in');
             if (title && !title.classList.contains('neon-in')) title.classList.add('neon-in');
-            if (sub   && !sub.classList.contains('neon-in'))   sub.classList.add('neon-in');
+            if (sub && !sub.classList.contains('neon-in')) sub.classList.add('neon-in');
           }
 
           /* dismiss after HOLD_DUR */
