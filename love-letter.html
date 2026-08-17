@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
   <meta name="description" content="A heartfelt love letter — open with love">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Sriracha&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Sriracha&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --maroon: #7a1f3d;
@@ -16,265 +19,737 @@
       --cream: #fdf6ea;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-size: 16px; height: 100vh; overflow: hidden; position: relative;
+      font-size: 16px;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
       background: linear-gradient(160deg, #4f1428 0%, #7a1f3d 40%, #c2185b 80%, #f06292 100%);
       font-family: 'Quicksand', sans-serif;
     }
 
     /* ===== HEART TRANSITION ===== */
     #heart-transition-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 9999; background: var(--deep-maroon);
-      display: none; justify-content: center; align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      background: var(--deep-maroon);
+      display: none;
+      justify-content: center;
+      align-items: center;
     }
-    #heart-transition-overlay.active { display: flex; }
-    .heart-loader { position:absolute; left:50%; top:50%; margin-top:-150px; width:300px; height:300px; overflow:visible; }
-    .heart-loader__group { transform-origin:0 90px; animation: group-anim 7s .1s forwards; }
-    .heart-loader__square { stroke:var(--gold); stroke-dasharray:240,240; stroke-dashoffset:240; animation: square-anim 7s .1s forwards; }
-    .heart-loader__circle { stroke:var(--gold); stroke-dasharray:188.522,188.522; stroke-dashoffset:188.522; transform-origin:60px 30px; }
-    .heart-loader__circle.m--left  { animation: left-circle-anim 7s .1s forwards; }
-    .heart-loader__circle.m--right { animation: right-circle-anim 7s .1s forwards; }
-    .heart-loader__heartPath { stroke:var(--maroon); fill:transparent; stroke-dasharray:308.522,308.522; stroke-dashoffset:308.522; animation: heart-anim 7s .1s forwards; }
-    @keyframes square-anim       { 12%{stroke-dashoffset:0} 43%{stroke-dashoffset:0;opacity:1} 85%{stroke-dashoffset:0;opacity:0} 100%{stroke-dashoffset:0;opacity:0} }
-    @keyframes left-circle-anim  { 12%{stroke-dashoffset:188.522} 31%{stroke-dashoffset:0;transform:translateY(0)} 41%{stroke-dashoffset:0;transform:translateY(-30px)} 43%{stroke-dashoffset:0;transform:translateY(-30px);opacity:1} 85%{stroke-dashoffset:0;transform:translateY(-30px);opacity:0} 100%{stroke-dashoffset:0;transform:translateY(-30px);opacity:0} }
-    @keyframes right-circle-anim { 12%{stroke-dashoffset:188.522} 31%{stroke-dashoffset:0;transform:translateX(0)} 41%{stroke-dashoffset:0;transform:translateX(30px)} 43%{stroke-dashoffset:0;transform:translateX(30px);opacity:1} 85%{stroke-dashoffset:0;transform:translateX(30px);opacity:0} 100%{stroke-dashoffset:0;transform:translateX(30px);opacity:0} }
-    @keyframes group-anim        { 43%{transform:rotate(0)} 54%{transform:rotate(-45deg)} 90%{transform:rotate(-45deg);opacity:1} 100%{transform:rotate(-45deg);opacity:1} }
-    @keyframes heart-anim        { 55%{stroke-dashoffset:308.522;fill:transparent} 70%{stroke-dashoffset:0;fill:transparent} 87%{stroke-dashoffset:0;fill:var(--maroon)} 100%{stroke-dashoffset:0;fill:var(--maroon)} }
+
+    #heart-transition-overlay.active {
+      display: flex;
+    }
+
+    .heart-loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -150px;
+      width: 300px;
+      height: 300px;
+      overflow: visible;
+    }
+
+    .heart-loader__group {
+      transform-origin: 0 90px;
+      animation: group-anim 7s .1s forwards;
+    }
+
+    .heart-loader__square {
+      stroke: var(--gold);
+      stroke-dasharray: 240, 240;
+      stroke-dashoffset: 240;
+      animation: square-anim 7s .1s forwards;
+    }
+
+    .heart-loader__circle {
+      stroke: var(--gold);
+      stroke-dasharray: 188.522, 188.522;
+      stroke-dashoffset: 188.522;
+      transform-origin: 60px 30px;
+    }
+
+    .heart-loader__circle.m--left {
+      animation: left-circle-anim 7s .1s forwards;
+    }
+
+    .heart-loader__circle.m--right {
+      animation: right-circle-anim 7s .1s forwards;
+    }
+
+    .heart-loader__heartPath {
+      stroke: var(--maroon);
+      fill: transparent;
+      stroke-dasharray: 308.522, 308.522;
+      stroke-dashoffset: 308.522;
+      animation: heart-anim 7s .1s forwards;
+    }
+
+    @keyframes square-anim {
+      12% {
+        stroke-dashoffset: 0
+      }
+
+      43% {
+        stroke-dashoffset: 0;
+        opacity: 1
+      }
+
+      85% {
+        stroke-dashoffset: 0;
+        opacity: 0
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0
+      }
+    }
+
+    @keyframes left-circle-anim {
+      12% {
+        stroke-dashoffset: 188.522
+      }
+
+      31% {
+        stroke-dashoffset: 0;
+        transform: translateY(0)
+      }
+
+      41% {
+        stroke-dashoffset: 0;
+        transform: translateY(-30px)
+      }
+
+      43% {
+        stroke-dashoffset: 0;
+        transform: translateY(-30px);
+        opacity: 1
+      }
+
+      85% {
+        stroke-dashoffset: 0;
+        transform: translateY(-30px);
+        opacity: 0
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        transform: translateY(-30px);
+        opacity: 0
+      }
+    }
+
+    @keyframes right-circle-anim {
+      12% {
+        stroke-dashoffset: 188.522
+      }
+
+      31% {
+        stroke-dashoffset: 0;
+        transform: translateX(0)
+      }
+
+      41% {
+        stroke-dashoffset: 0;
+        transform: translateX(30px)
+      }
+
+      43% {
+        stroke-dashoffset: 0;
+        transform: translateX(30px);
+        opacity: 1
+      }
+
+      85% {
+        stroke-dashoffset: 0;
+        transform: translateX(30px);
+        opacity: 0
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        transform: translateX(30px);
+        opacity: 0
+      }
+    }
+
+    @keyframes group-anim {
+      43% {
+        transform: rotate(0)
+      }
+
+      54% {
+        transform: rotate(-45deg)
+      }
+
+      90% {
+        transform: rotate(-45deg);
+        opacity: 1
+      }
+
+      100% {
+        transform: rotate(-45deg);
+        opacity: 1
+      }
+    }
+
+    @keyframes heart-anim {
+      55% {
+        stroke-dashoffset: 308.522;
+        fill: transparent
+      }
+
+      70% {
+        stroke-dashoffset: 0;
+        fill: transparent
+      }
+
+      87% {
+        stroke-dashoffset: 0;
+        fill: var(--maroon)
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        fill: var(--maroon)
+      }
+    }
 
     /* ===== FALLING HEARTS ===== */
     .snowflake {
-      position: fixed; top: -10%; user-select: none; cursor: default;
+      position: fixed;
+      top: -10%;
+      user-select: none;
+      cursor: default;
       animation-name: snowflakes-fall, snowflakes-shake;
       animation-duration: 10s, 3s;
       animation-timing-function: linear, ease-in-out;
       animation-iteration-count: infinite, infinite;
     }
-    @keyframes snowflakes-fall  { 0%{top:-10%} 100%{top:100%} }
-    @keyframes snowflakes-shake { 0%{transform:translateX(0)} 50%{transform:translateX(80px)} 100%{transform:translateX(0)} }
-    .snowflake:nth-of-type(1){left:1%;animation-delay:0s,0s}   .snowflake:nth-of-type(2){left:10%;animation-delay:1s,1s}
-    .snowflake:nth-of-type(3){left:20%;animation-delay:6s,.5s} .snowflake:nth-of-type(4){left:30%;animation-delay:4s,2s}
-    .snowflake:nth-of-type(5){left:40%;animation-delay:2s,2s}  .snowflake:nth-of-type(6){left:50%;animation-delay:8s,3s}
-    .snowflake:nth-of-type(7){left:60%;animation-delay:6s,2s}  .snowflake:nth-of-type(8){left:70%;animation-delay:2.5s,1s}
-    .snowflake:nth-of-type(9){left:80%;animation-delay:1s,0s}  .snowflake:nth-of-type(10){left:90%;animation-delay:3s,1.5s}
+
+    @keyframes snowflakes-fall {
+      0% {
+        top: -10%
+      }
+
+      100% {
+        top: 100%
+      }
+    }
+
+    @keyframes snowflakes-shake {
+      0% {
+        transform: translateX(0)
+      }
+
+      50% {
+        transform: translateX(80px)
+      }
+
+      100% {
+        transform: translateX(0)
+      }
+    }
+
+    .snowflake:nth-of-type(1) {
+      left: 1%;
+      animation-delay: 0s, 0s
+    }
+
+    .snowflake:nth-of-type(2) {
+      left: 10%;
+      animation-delay: 1s, 1s
+    }
+
+    .snowflake:nth-of-type(3) {
+      left: 20%;
+      animation-delay: 6s, .5s
+    }
+
+    .snowflake:nth-of-type(4) {
+      left: 30%;
+      animation-delay: 4s, 2s
+    }
+
+    .snowflake:nth-of-type(5) {
+      left: 40%;
+      animation-delay: 2s, 2s
+    }
+
+    .snowflake:nth-of-type(6) {
+      left: 50%;
+      animation-delay: 8s, 3s
+    }
+
+    .snowflake:nth-of-type(7) {
+      left: 60%;
+      animation-delay: 6s, 2s
+    }
+
+    .snowflake:nth-of-type(8) {
+      left: 70%;
+      animation-delay: 2.5s, 1s
+    }
+
+    .snowflake:nth-of-type(9) {
+      left: 80%;
+      animation-delay: 1s, 0s
+    }
+
+    .snowflake:nth-of-type(10) {
+      left: 90%;
+      animation-delay: 3s, 1.5s
+    }
 
     /* ===== BACK BUTTON ===== */
     .back-btn {
-      position: fixed; top: 20px; left: 20px;
-      background: rgba(255,255,255,.15); backdrop-filter: blur(5px);
-      border: 2px solid rgba(255,255,255,.5); color: white;
-      font-family: 'Quicksand', sans-serif; font-size: 1rem;
-      padding: 8px 20px; border-radius: 50px; cursor: pointer;
-      z-index: 100; transition: all .3s;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, .5);
+      color: white;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 100;
+      transition: all .3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .back-btn:hover { background: rgba(255,255,255,.3); transform: translateX(-3px); }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, .3);
+      transform: translateX(-3px);
+    }
 
     /* ===== ENVELOPE ===== */
     :root {
-      --envelope-x: 300px; --envelope-y: 200px;
-      --envelope-bg: #c2185b; --envelope-shadow: var(--maroon);
-      --letter-x: 250px; --letter-y: calc(250px - 1rem - 10px);
-      --letter-bg: var(--cream); --letter-shadow: var(--gold);
-      --letter-text: var(--deep-maroon); --letter-font: "Sriracha", cursive;
-      --letter-button-text: var(--maroon); --heart-bg: var(--maroon); --heart-text: white;
+      --envelope-x: 300px;
+      --envelope-y: 200px;
+      --envelope-bg: #c2185b;
+      --envelope-shadow: var(--maroon);
+      --letter-x: 250px;
+      --letter-y: calc(250px - 1rem - 10px);
+      --letter-bg: var(--cream);
+      --letter-shadow: var(--gold);
+      --letter-text: var(--deep-maroon);
+      --letter-font: "Sriracha", cursive;
+      --letter-button-text: var(--maroon);
+      --heart-bg: var(--maroon);
+      --heart-text: white;
     }
+
     @media (min-width: 650px) {
-      :root { --envelope-x: 600px; --envelope-y: 400px; --letter-x: 500px; --letter-y: calc(400px - 1rem - 10px); }
+      :root {
+        --envelope-x: 600px;
+        --envelope-y: 400px;
+        --letter-x: 500px;
+        --letter-y: calc(400px - 1rem - 10px);
+      }
     }
 
     .cssletter {
-      position: relative; width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      user-select: none; overflow: hidden; z-index: 10;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      overflow: hidden;
+      z-index: 10;
     }
-    .envelope { position: relative; width: var(--envelope-x); height: var(--envelope-y); background: var(--envelope-bg); }
-    .envelope-flap { width: 100%; height: 71%; position: absolute; top: 0; z-index: 3; overflow: hidden; transition: .6s linear all; transform-origin: top; pointer-events: all; }
-    .envelope-folds { width: 100%; height: 100%; overflow: hidden; z-index: 2; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
-    .envelope-flap::before, .envelope-left::before, .envelope-right::before, .envelope-bottom::before {
-      content: ""; transform: rotate(45deg); background: var(--envelope-bg);
+
+    .envelope {
+      position: relative;
+      width: var(--envelope-x);
+      height: var(--envelope-y);
+      background: var(--envelope-bg);
+    }
+
+    .envelope-flap {
+      width: 100%;
+      height: 71%;
+      position: absolute;
+      top: 0;
+      z-index: 3;
+      overflow: hidden;
+      transition: .6s linear all;
+      transform-origin: top;
+      pointer-events: all;
+    }
+
+    .envelope-folds {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .envelope-flap::before,
+    .envelope-left::before,
+    .envelope-right::before,
+    .envelope-bottom::before {
+      content: "";
+      transform: rotate(45deg);
+      background: var(--envelope-bg);
       box-shadow: 0 0 30px -5px var(--envelope-shadow);
-      width: 100%; aspect-ratio: 1; display: block; position: absolute; top: 60%;
+      width: 100%;
+      aspect-ratio: 1;
+      display: block;
+      position: absolute;
+      top: 60%;
     }
-    .envelope-flap::before { border-radius: 5rem; bottom: 30px; top: auto; }
-    @media (min-width: 650px) { .envelope-flap::before { bottom: 100px; } }
-    .envelope-left::before  { top: 10%; left: -65%; }
-    .envelope-right::before { top: 10%; right: -65%; }
-    .envelope-bottom::before { top: 60%; border-radius: 5rem; }
+
+    .envelope-flap::before {
+      border-radius: 5rem;
+      bottom: 30px;
+      top: auto;
+    }
+
+    @media (min-width: 650px) {
+      .envelope-flap::before {
+        bottom: 100px;
+      }
+    }
+
+    .envelope-left::before {
+      top: 10%;
+      left: -65%;
+    }
+
+    .envelope-right::before {
+      top: 10%;
+      right: -65%;
+    }
+
+    .envelope-bottom::before {
+      top: 60%;
+      border-radius: 5rem;
+    }
+
     .heart-btn {
-      z-index: 4; position: relative; box-shadow: none; border: none;
-      width: 70px; aspect-ratio: 1;
+      z-index: 4;
+      position: relative;
+      box-shadow: none;
+      border: none;
+      width: 70px;
+      aspect-ratio: 1;
       background:
         radial-gradient(circle at 60% 65%, var(--heart-bg) 64%, transparent 65%) top left/50% 50%,
         radial-gradient(circle at 40% 65%, var(--heart-bg) 64%, transparent 65%) top right/50% 50%,
         conic-gradient(from -45deg at 50% 85.5%, var(--heart-bg) 90deg, transparent 0) bottom/100% 50%;
-      background-repeat: no-repeat; left: 50%; top: 70%; transform: translate(-50%,-50%); cursor: pointer;
+      background-repeat: no-repeat;
+      left: 50%;
+      top: 70%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
     }
-    @media (min-width: 650px) { .heart-btn { width: 150px; } }
-    .heart-text { transform: translateY(-10px); display: block; color: var(--heart-text); font-size: 1.5rem; font-family: var(--letter-font); }
-    .envelope.active * { pointer-events: none; }
-    .envelope.active .envelope-flap { transform: rotateX(-180deg) translateY(0); perspective: 10px; }
-    .envelope.active .heart-btn { display: none; }
+
+    @media (min-width: 650px) {
+      .heart-btn {
+        width: 150px;
+      }
+    }
+
+    .heart-text {
+      transform: translateY(-10px);
+      display: block;
+      color: var(--heart-text);
+      font-size: 1.5rem;
+      font-family: var(--letter-font);
+    }
+
+    .envelope.active * {
+      pointer-events: none;
+    }
+
+    .envelope.active .envelope-flap {
+      transform: rotateX(-180deg) translateY(0);
+      perspective: 10px;
+    }
+
+    .envelope.active .heart-btn {
+      display: none;
+    }
 
     .letter {
-      box-sizing: border-box; font-family: var(--letter-font); font-size: 1rem; line-height: 1.5;
-      background-color: var(--letter-bg); color: var(--letter-text);
-      width: var(--letter-x); height: var(--letter-y);
-      user-select: none; box-shadow: inset 0 0 20px -5px var(--letter-shadow);
-      padding: 3rem 1.2rem 1rem; margin: 0; cursor: grab; position: absolute;
-      overflow: auto; text-align: center; border: 0;
+      box-sizing: border-box;
+      font-family: var(--letter-font);
+      font-size: 1rem;
+      line-height: 1.5;
+      background-color: var(--letter-bg);
+      color: var(--letter-text);
+      width: var(--letter-x);
+      height: var(--letter-y);
+      user-select: none;
+      box-shadow: inset 0 0 20px -5px var(--letter-shadow);
+      padding: 3rem 1.2rem 1rem;
+      margin: 0;
+      cursor: grab;
+      position: absolute;
+      overflow: auto;
+      text-align: center;
+      border: 0;
       border-radius: 4px;
     }
-    .letter:active { cursor: grabbing; }
-    .letter.center { display: flex; align-items: center; justify-content: center; flex-direction: column; }
-    .letter cite { font-size: 1.25rem; color: var(--letter-text); margin-top: 1rem; font-style: italic; }
-    .letter:nth-child(even) { transform: skew(-2deg) translateY(-4px); }
-    .letter:nth-child(odd)  { transform: skew(2deg) translateY(4px); }
-    @media (min-width: 650px) { .letter { font-size: 1.2rem; } }
+
+    .letter:active {
+      cursor: grabbing;
+    }
+
+    .letter.center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .letter cite {
+      font-size: 1.25rem;
+      color: var(--letter-text);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .letter:nth-child(even) {
+      transform: skew(-2deg) translateY(-4px);
+    }
+
+    .letter:nth-child(odd) {
+      transform: skew(2deg) translateY(4px);
+    }
+
+    @media (min-width: 650px) {
+      .letter {
+        font-size: 1.2rem;
+      }
+    }
+
     .closeLetter {
-      position: absolute; top: .5rem; left: 50%; transform: translateX(-50%);
-      background: none; box-shadow: none; padding: 4px 10px;
-      border: 1px solid var(--letter-button-text); border-radius: 20px;
-      font-family: var(--letter-font); font-size: 1rem;
-      color: var(--letter-button-text); cursor: pointer;
+      position: absolute;
+      top: .5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      box-shadow: none;
+      padding: 4px 10px;
+      border: 1px solid var(--letter-button-text);
+      border-radius: 20px;
+      font-family: var(--letter-font);
+      font-size: 1rem;
+      color: var(--letter-button-text);
+      cursor: pointer;
     }
 
     /* Envelope address label */
     .envelope-address {
-      position: absolute; left: 50%; top: 20%; transform: translate(-50%,-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 5;
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 5;
     }
-    .envelope-address .for-text   { font-family: 'Sriracha', cursive; font-size: 1.5rem; color: rgba(255,255,255,.8); }
-    .envelope-address .name-text  { font-family: 'Dancing Script', cursive; font-size: 2rem; color: white; font-weight: 700; text-shadow: 0 0 10px rgba(212,162,78,.5); }
+
+    .envelope-address .for-text {
+      font-family: 'Sriracha', cursive;
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .envelope-address .name-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: white;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(212, 162, 78, .5);
+    }
 
     /* Heartbeat animation for opened letters */
-    .heartBeating { animation: heartbeat 3s infinite; transform-origin: center; }
-    @keyframes heartbeat { 0%,100%{transform:scale(1)} 25%{transform:scale(1.1)} 50%{transform:scale(.95)} 75%{transform:scale(1.1)} }
+    .heartBeating {
+      animation: heartbeat 3s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes heartbeat {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      25% {
+        transform: scale(1.1)
+      }
+
+      50% {
+        transform: scale(.95)
+      }
+
+      75% {
+        transform: scale(1.1)
+      }
+    }
 
     /* ===== RESPONSIVE ===== */
     @media screen and (max-width: 658px) {
-      .heart-loader { width: 200px; height: 200px; }
-      .envelope-folds { height: 130%; }
+      .heart-loader {
+        width: 200px;
+        height: 200px;
+      }
+
+      .envelope-folds {
+        height: 130%;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- Heart transition overlay -->
-<div id="heart-transition-overlay">
-  <svg class="heart-loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90">
-    <g class="heart-loader__group">
-      <path class="heart-loader__square"    stroke-width="1" fill="none" d="M0,30 0,90 60,90 60,30z"/>
-      <path class="heart-loader__circle m--left"  stroke-width="1" fill="none" d="M60,60 a30,30 0 0,1 -60,0 a30,30 0 0,1 60,0"/>
-      <path class="heart-loader__circle m--right" stroke-width="1" fill="none" d="M60,60 a30,30 0 0,1 -60,0 a30,30 0 0,1 60,0"/>
-      <path class="heart-loader__heartPath" stroke-width="2" d="M60,30 a30,30 0 0,1 0,60 L0,90 0,30 a30,30 0 0,1 60,0"/>
-    </g>
-  </svg>
-</div>
+  <!-- Heart transition overlay -->
+  <div id="heart-transition-overlay">
+    <svg class="heart-loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90">
+      <g class="heart-loader__group">
+        <path class="heart-loader__square" stroke-width="1" fill="none" d="M0,30 0,90 60,90 60,30z" />
+        <path class="heart-loader__circle m--left" stroke-width="1" fill="none"
+          d="M60,60 a30,30 0 0,1 -60,0 a30,30 0 0,1 60,0" />
+        <path class="heart-loader__circle m--right" stroke-width="1" fill="none"
+          d="M60,60 a30,30 0 0,1 -60,0 a30,30 0 0,1 60,0" />
+        <path class="heart-loader__heartPath" stroke-width="2"
+          d="M60,30 a30,30 0 0,1 0,60 L0,90 0,30 a30,30 0 0,1 60,0" />
+      </g>
+    </svg>
+  </div>
 
-<!-- Falling hearts -->
-<div class="snowflake" style="font-size:1.5em">❤️</div>
-<div class="snowflake" style="font-size:1em">🌹</div>
-<div class="snowflake" style="font-size:2em">❤️</div>
-<div class="snowflake" style="font-size:1.2em">💛</div>
-<div class="snowflake" style="font-size:1.5em">❤️</div>
-<div class="snowflake" style="font-size:0.8em">🌷</div>
-<div class="snowflake" style="font-size:1.7em">❤️</div>
-<div class="snowflake" style="font-size:1.2em">✨</div>
-<div class="snowflake" style="font-size:1em">❤️</div>
-<div class="snowflake" style="font-size:1.4em">💫</div>
+  <!-- Falling hearts -->
+  <div class="snowflake" style="font-size:1.5em">❤️</div>
+  <div class="snowflake" style="font-size:1em">🌹</div>
+  <div class="snowflake" style="font-size:2em">❤️</div>
+  <div class="snowflake" style="font-size:1.2em">💛</div>
+  <div class="snowflake" style="font-size:1.5em">❤️</div>
+  <div class="snowflake" style="font-size:0.8em">🌷</div>
+  <div class="snowflake" style="font-size:1.7em">❤️</div>
+  <div class="snowflake" style="font-size:1.2em">✨</div>
+  <div class="snowflake" style="font-size:1em">❤️</div>
+  <div class="snowflake" style="font-size:1.4em">💫</div>
 
-<!-- Back button -->
-<a class="back-btn" href="index.html" onclick="navigateBack(event)">&#8592; Go Back</a>
+  <!-- Back button -->
+  <a class="back-btn" href="index.html" onclick="navigateBack(event)">&#8592; Go Back</a>
 
-<!-- CSS Envelope -->
-<div class="cssletter" id="cssletterContainer">
-  <div class="envelope" id="mainEnvelope">
-    <div class="envelope-flap"></div>
-    <div class="envelope-folds">
-      <div class="envelope-left"></div>
-      <div class="envelope-right"></div>
-      <div class="envelope-bottom"></div>
+  <!-- CSS Envelope -->
+  <div class="cssletter" id="cssletterContainer">
+    <div class="envelope" id="mainEnvelope">
+      <div class="envelope-flap"></div>
+      <div class="envelope-folds">
+        <div class="envelope-left"></div>
+        <div class="envelope-right"></div>
+        <div class="envelope-bottom"></div>
+      </div>
+      <div class="envelope-address">
+        <span class="for-text">For,</span>
+        <span class="name-text">My Birthday Girl 🌹</span>
+      </div>
+      <button class="heart-btn" id="openEnvelopeBtn" onclick="openEnvelope()">
+        <span class="heart-text">open</span>
+      </button>
     </div>
-    <div class="envelope-address">
-      <span class="for-text">For,</span>
-      <span class="name-text">My Birthday Girl 🌹</span>
+  </div>
+
+  <!-- Letters container (revealed after opening) -->
+  <div id="lettersContainer" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:20;">
+    <div class="letter center" id="letter1" style="top:50%;left:50%;transform:translate(-50%,-50%);">
+      <button class="closeLetter" onclick="closeLetter('letter1')">close</button>
+      <p style="font-size:1.4rem;font-weight:600;margin-bottom:1rem">🎂 Hey Birthday Girl ✨</p>
+      <p>Wishing you the happiest of birthdays! Thank you for always being such a wonderful, kind, and supportive
+        friend. May your day be filled with lots of joy, laughter, and great memories, and may the coming year bring you
+        all the happiness and success you truly deserve.</p>
+      <cite>— From your best friend, always! 🌟</cite>
     </div>
-    <button class="heart-btn" id="openEnvelopeBtn" onclick="openEnvelope()">
-      <span class="heart-text">open</span>
-    </button>
+    <div class="letter" id="letter2" style="top:30%;left:20%;">
+      <button class="closeLetter" onclick="closeLetter('letter2')">close</button>
+      <p>Happy Birthday, my love! 🎉</p><br>
+      <p>I hope your day is filled with laughter, cake, and everything that makes you happy. You deserve all the joy in
+        the world. I can't wait to celebrate many more birthdays with you!</p>
+      <cite>— From your ... ♾️</cite>
+    </div>
   </div>
-</div>
 
-<!-- Letters container (revealed after opening) -->
-<div id="lettersContainer" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:20;">
-  <div class="letter center" id="letter1" style="top:50%;left:50%;transform:translate(-50%,-50%);">
-    <button class="closeLetter" onclick="closeLetter('letter1')">close</button>
-    <p style="font-size:1.4rem;font-weight:600;margin-bottom:1rem">🌹 Hey, Birthday Girl 🌹</p>
-    <p>I genuinely can't believe how much you mean to me. You walked into my life and made everything feel like it was worth it. Every single moment with you is something I treasure.</p>
-    <cite>— Always yours</cite>
-  </div>
-  <div class="letter" id="letter2" style="top:30%;left:20%;">
-    <button class="closeLetter" onclick="closeLetter('letter2')">close</button>
-    <p>Happy Birthday, my love! 🎉</p><br>
-    <p>May this year bring you every dream you've been chasing. You deserve the whole world and so much more. I hope today is as magical as you are — because you truly are magic to me.</p>
-  </div>
-  <div class="letter center" id="letter3" style="top:55%;left:60%;">
-    <button class="closeLetter" onclick="closeLetter('letter3')">close</button>
-    <p style="font-size:1.2rem;margin-bottom:1rem">💛 You make the ordinary feel extraordinary.</p>
-    <p>Thank you for being you. Thank you for every laugh, every conversation, and every moment that felt like a little piece of magic. On your birthday, I just want you to know — I'm so grateful you exist.</p>
-    <cite>Forever yours ❤️</cite>
-  </div>
-</div>
+  <script>
+    // Fade out heart overlay on load
+    const overlay = document.getElementById('heart-transition-overlay');
+    overlay.classList.add('active');
+    setTimeout(() => { overlay.classList.remove('active'); overlay.style.display = 'none'; }, 500);
 
-<script>
-  // Fade out heart overlay on load
-  const overlay = document.getElementById('heart-transition-overlay');
-  overlay.classList.add('active');
-  setTimeout(() => { overlay.classList.remove('active'); overlay.style.display = 'none'; }, 500);
+    function openEnvelope() {
+      const env = document.getElementById('mainEnvelope');
+      env.classList.add('active');
+      setTimeout(() => {
+        document.getElementById('cssletterContainer').style.display = 'none';
+        document.getElementById('lettersContainer').style.display = 'block';
+        makeDraggable(document.getElementById('letter1'));
+        makeDraggable(document.getElementById('letter2'));
+        makeDraggable(document.getElementById('letter3'));
+      }, 800);
+    }
 
-  function openEnvelope() {
-    const env = document.getElementById('mainEnvelope');
-    env.classList.add('active');
-    setTimeout(() => {
-      document.getElementById('cssletterContainer').style.display = 'none';
-      document.getElementById('lettersContainer').style.display   = 'block';
-      makeDraggable(document.getElementById('letter1'));
-      makeDraggable(document.getElementById('letter2'));
-      makeDraggable(document.getElementById('letter3'));
-    }, 800);
-  }
+    function closeLetter(id) { document.getElementById(id).style.display = 'none'; }
 
-  function closeLetter(id) { document.getElementById(id).style.display = 'none'; }
+    function makeDraggable(el) {
+      let startX, startY, origX, origY, isDragging = false;
+      const startDrag = (cx, cy) => {
+        isDragging = true; startX = cx; startY = cy;
+        const rect = el.getBoundingClientRect();
+        origX = rect.left; origY = rect.top;
+        el.style.position = 'fixed';
+        el.style.top = origY + 'px'; el.style.left = origX + 'px';
+        el.style.transform = 'none'; el.style.zIndex = 100;
+      };
+      const moveDrag = (cx, cy) => { if (!isDragging) return; el.style.left = (origX + cx - startX) + 'px'; el.style.top = (origY + cy - startY) + 'px'; };
+      const endDrag = () => { isDragging = false; };
+      el.addEventListener('mousedown', (e) => { if (e.target.tagName !== 'BUTTON') { startDrag(e.clientX, e.clientY); e.preventDefault(); } });
+      document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+      document.addEventListener('mouseup', endDrag);
+      el.addEventListener('touchstart', (e) => { if (e.target.tagName !== 'BUTTON') startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+      document.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+      document.addEventListener('touchend', endDrag);
+    }
 
-  function makeDraggable(el) {
-    let startX, startY, origX, origY, isDragging = false;
-    const startDrag = (cx, cy) => {
-      isDragging = true; startX = cx; startY = cy;
-      const rect = el.getBoundingClientRect();
-      origX = rect.left; origY = rect.top;
-      el.style.position = 'fixed';
-      el.style.top = origY+'px'; el.style.left = origX+'px';
-      el.style.transform = 'none'; el.style.zIndex = 100;
-    };
-    const moveDrag = (cx, cy) => { if (!isDragging) return; el.style.left=(origX+cx-startX)+'px'; el.style.top=(origY+cy-startY)+'px'; };
-    const endDrag  = () => { isDragging = false; };
-    el.addEventListener('mousedown', (e) => { if (e.target.tagName !== 'BUTTON') { startDrag(e.clientX, e.clientY); e.preventDefault(); } });
-    document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
-    document.addEventListener('mouseup', endDrag);
-    el.addEventListener('touchstart',  (e) => { if (e.target.tagName !== 'BUTTON') startDrag(e.touches[0].clientX, e.touches[0].clientY); }, {passive:true});
-    document.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
-    document.addEventListener('touchend', endDrag);
-  }
-
-  function navigateBack(e) {
-    e.preventDefault();
-    const ov = document.getElementById('heart-transition-overlay');
-    ov.style.display = 'flex'; ov.classList.add('active');
-    setTimeout(() => { window.location.href = 'index.html'; }, 7100);
-  }
-</script>
+    function navigateBack(e) {
+      e.preventDefault();
+      const ov = document.getElementById('heart-transition-overlay');
+      ov.style.display = 'flex'; ov.classList.add('active');
+      setTimeout(() => { window.location.href = 'index.html'; }, 7100);
+    }
+  </script>
 </body>
+
 </html>
